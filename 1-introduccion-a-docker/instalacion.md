@@ -18,3 +18,7 @@ Crear un “Hello World” con Docker usando el comando docker hello-world
 Para agregar usuario que tenga permisos para ejecutar el comando docker, se debe agregar al usuario al grupo docker creado duirante lña instalacion:
 
 - **usermod -aG docker padeq**
+
+O puede crear un usuario nuevo llamado *docker*:
+
+- **useradd -g docker docker**
