@@ -1,0 +1,44 @@
+
+As per the documentation here, you can install Docker CE 17.03 (or future versions) on RHEL 7.3 64-bit via:
+
+Set up the Docker CE repository on RHEL:
+```
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum makecache fast
+```
+Install the latest version of Docker CE on RHEL:
+```
+sudo yum -y install docker-ce
+```
+Alternatively, you can specify a specific version of Docker CE:
+```
+sudo yum -y install docker-ce-<version>-<release>
+```
+Start Docker:
+```
+sudo systemctl start docker
+```
+Test your Docker CE installation:
+```
+sudo docker run hello-world
+```
+---------------------------
+
+Si se tiene problemas con el container-selinux:
+
+```
+Error: Package: docker-ce-17.06.0.ce-1.el7.centos.x86_64 (docker-ce-stable)
+           Requires: container-selinux >= 2.9
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+```
+Installing the Selinux from the Centos repository worked for me: 
+1. Go to [http://mirror.centos.org/centos/7/extras/x86_64/Packages/](http://mirror.centos.org/centos/7/extras/x86_64/Packages/)
+2. Find the latest version for container-selinux i.e. container-selinux-2.21-1.el7.noarch.rpm 
+3. Run the following command on your terminal: 
+`$ sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/**Add_current_container-selinux_package_here**`
+4. The command should looks like the following 
+`$ sudo yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.21-1.el7.noarch.rpm`
+
+Note: the container version is constantly being updated, that is why you should look for the latest version in the Centos' repository
